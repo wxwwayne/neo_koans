@@ -14,9 +14,25 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-  # WRITE THIS CODE
+	if [a,b,c].min <= 0
+    	raise TriangleError, "impossible triangle" 
+    end
+    #x, y, z = [a,b,c].sort
+    #if x + y <= z
+    if (a + b <= c) || (a + c <= b) || (b + c <= a)
+    	raise TriangleError, "no two sides can be < than the third"
+    end
+
+    if a == b && b == c 
+        :equilateral
+    elsif a == b || b == c || c == a
+        :isosceles
+    else
+        :scalene
+    end
 end
 
 # Error class used in part 2.  No need to change this code.
 class TriangleError < StandardError
+	
 end
