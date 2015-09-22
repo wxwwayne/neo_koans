@@ -15,6 +15,7 @@ class AboutAsserts < Neo::Koan
   def test_assert_with_message
     assert true, "This should be true -- Please fix this"
   end
+  ###Messages are given if the assertion is wrong!!
 
   # To understand reality, we must compare our expectations against
   # reality.
@@ -30,7 +31,7 @@ class AboutAsserts < Neo::Koan
     expected_value = 2
     actual_value = 1 + 1
 
-    assert_equal expected_value, actual_value
+    assert_equal expected_value, actual_value, "Expected_value should equal actual_value!"
   end
 
   # Sometimes we will ask you to fill in the values

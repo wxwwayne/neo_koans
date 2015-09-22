@@ -2,8 +2,8 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 class AboutObjects < Neo::Koan
   def test_everything_is_an_object
-    assert_equal true, 1.is_a?(Object)
-    assert_equal true, 1.5.is_a?(Object)
+    assert_equal true, 1.is_a?(Object) #integer class == Fixnum
+    assert_equal true, 1.5.is_a?(Object)# class == Float
     assert_equal true, "string".is_a?(Object)
     assert_equal true, nil.is_a?(Object)
     assert_equal true, Object.is_a?(Object)
@@ -13,7 +13,9 @@ class AboutObjects < Neo::Koan
     assert_equal "123", 123.to_s
     assert_equal "", nil.to_s
   end
-
+  ####[12, 13, 14, 15].to_s == "[12, 13, 14, 15]", which is not reversible!
+  ### NoMethodError: undefined method `to_a' for "[12, 13, 14, 15]":String
+  ###to_s should get same result as inspect!!
   def test_objects_can_be_inspected
     assert_equal "123", 123.inspect
     assert_equal "nil", nil.inspect
