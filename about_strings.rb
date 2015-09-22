@@ -100,6 +100,9 @@ EOS
     there = "World"
     hi << there
     assert_equal "Hello, World", original_string
+    ###using << is much faster than "one_string + other_string" 
+    ###because the + operator generates a new string instead of 
+    ###appending to one_string.
 
     # THINK ABOUT IT:
     #
@@ -121,6 +124,7 @@ EOS
     string = '\\\''
     assert_equal 2, string.size
     assert_equal "\\'", string
+    ### one is "\" and one is "'"
   end
 
   def test_double_quoted_strings_interpolate_variables
@@ -142,10 +146,11 @@ EOS
 
   def test_you_can_get_a_substring_from_a_string
     string = "Bacon, lettuce and tomato"
-    assert_equal "let", string[7,3] #not [“l”,”e”,”t”]
+    assert_equal "let", string[7,3] 
+    #not [“l”,”e”,”t”]
     assert_equal "let", string[7..9]
   end
-
+    ###The subxxxx will be the same class!!!
   def test_you_can_get_a_single_character_from_a_string
     string = "Bacon, lettuce and tomato"
     assert_equal "a", string[1] # not ["a"]
@@ -172,12 +177,14 @@ EOS
   def test_strings_can_be_split
     string = "Sausage Egg Cheese"
     words = string.split
+    ###by default " " is the symbol of split!!!
     assert_equal ["Sausage", "Egg", "Cheese"], words
   end
 
   def test_strings_can_be_split_with_different_patterns
     string = "the:rain:in:spain"
     words = string.split(/:/)
+    ###same as words = string.split(':')!!!
     assert_equal ["the", "rain", "in", "spain"], words
 
     # NOTE: Patterns are formed from Regular Expressions.  Ruby has a
@@ -188,6 +195,7 @@ EOS
   def test_strings_can_be_joined
     words = ["Now", "is", "the", "time"]
     assert_equal "Now is the time", words.join(" ")
+    ###by default nothing is in between by join!!!
   end
 
   def test_strings_are_unique_objects
