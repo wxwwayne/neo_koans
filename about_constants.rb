@@ -44,7 +44,8 @@ class AboutConstants < Neo::Koan
 
   # ------------------------------------------------------------------
 
-  class Reptile < Animal
+  class Reptile < Animal 
+  #inherit methods and constants from Animal
     def legs_in_reptile
       LEGS
     end
@@ -59,6 +60,12 @@ class AboutConstants < Neo::Koan
   class MyAnimals
     LEGS = 2
 
+    class Monkey < Animal
+      def legs_in_monkey
+        LEGS # => 2
+      end
+    end
+
     class Bird < Animal
       def legs_in_bird
         LEGS
@@ -68,11 +75,12 @@ class AboutConstants < Neo::Koan
 
   def test_who_wins_with_both_nested_and_inherited_constants
     assert_equal 2, MyAnimals::Bird.new.legs_in_bird
+    assert_equal 2, MyAnimals::Monkey.new.legs_in_monkey
   end
 
   # QUESTION: Which has precedence: The constant in the lexical scope,
   # or the constant from the inheritance hierarchy?
-  ####when you define Bird, you are already in the scope of MyAnimals!
+  ###when you define Bird, you are already in the scope of MyAnimals!
   # ------------------------------------------------------------------
 
   class MyAnimals::Oyster < Animal
@@ -88,7 +96,7 @@ class AboutConstants < Neo::Koan
   # QUESTION: Now which has precedence: The constant in the lexical
   # scope, or the constant from the inheritance hierarchy?  Why is it
   # different than the previous answer?
-####by the time you define Oyster, you have dropped into the scope of 
-####MyAnimals, so ruby knows that LEGS refers to MyAnimals::LEGS (2)
-#### and not Animal::LEGS (4)
+###When you define MyAnimals::Oyster you are still in the global scope, 
+###so ruby has no knowledge of the LEGS value set to 2 in MyAnimals 
+###because you never actually are in the scope of MyAnimals
 end
