@@ -21,6 +21,8 @@ class AboutScope < Neo::Koan
     assert_raise(NameError) do
       Dog.new
     end
+    ###you are in global scope but Dog Class is in module Jims or Joes
+    ###scope!!!in global scope, there is no class named Dog!!!
   end
 
   def test_you_can_reference_nested_classes_using_the_scope_operator
@@ -37,6 +39,7 @@ class AboutScope < Neo::Koan
 
   class String
   end
+  ###after this class declaration, you are in String scope!!!
 
   def test_bare_bones_class_names_assume_the_current_scope
     assert_equal true, AboutScope::String == String
@@ -45,11 +48,12 @@ class AboutScope < Neo::Koan
   def test_nested_string_is_not_the_same_as_the_system_string
     assert_equal false, String == "HI".class
   end
+  ###But this string scope is not THE string scope!!!
 
   def test_use_the_prefix_scope_operator_to_force_the_global_scope
     assert_equal true, ::String == "HI".class
   end
-
+  ###:: will force back to global scope!!!
   # ------------------------------------------------------------------
 
   PI = 3.1416
@@ -61,6 +65,7 @@ class AboutScope < Neo::Koan
   # ------------------------------------------------------------------
 
   MyString = ::String
+  ###to define another name of the global string scope!!!
 
   def test_class_names_are_just_constants
     assert_equal true, MyString == ::String

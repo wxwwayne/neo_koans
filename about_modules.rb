@@ -60,4 +60,5 @@ class AboutModules < Neo::Koan
     fido = Dog.new
     assert_equal :in_object, fido.here
   end
+  ###methods in Class overwrite methods in Module!!!
 end

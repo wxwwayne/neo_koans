@@ -40,6 +40,9 @@ class AboutClassMethods < Neo::Koan
     def fido.wag
       :fidos_wag
     end
+    ###instance method is different from object method!!!
+    ###instance method can be only used by the certain instance
+    ###but object method can ne user by all objects in the class!!!
 
     assert_raise(NoMethodError) do
       rover.wag
@@ -52,11 +55,13 @@ class AboutClassMethods < Neo::Koan
     def wag
       :instance_level_wag
     end
+    ###this is a object method for all instances of the class!!!
   end
 
   def Dog2.wag
     :class_level_wag
   end
+  ###this is class method for only Dog2 class!!!not any instance!!!
 
   def test_since_classes_are_objects_you_can_define_singleton_methods_on_them_too
     assert_equal :class_level_wag, Dog2.wag
@@ -124,6 +129,8 @@ class AboutClassMethods < Neo::Koan
       :another_way_to_write_class_methods
     end
   end
+  ###with the self. you are defining Dog.class_method2 which is a 
+  ###class method not a instance method!!!
 
   def test_you_can_use_self_instead_of_an_explicit_reference_to_dog
     assert_equal :another_way_to_write_class_methods, Dog.class_method2

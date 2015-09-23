@@ -52,6 +52,9 @@ class AboutClasses < Neo::Koan
     assert_equal "Fido", fido.instance_eval("@name")  # string version
     assert_equal "Fido", fido.instance_eval { @name } # block version
   end
+  ###eval = evaluate value!!!
+  ### data is code! code is data! 2 ways of expression: 1. string
+  ### 2. block 
 
   # ------------------------------------------------------------------
 
@@ -116,6 +119,10 @@ class AboutClasses < Neo::Koan
     fido = Dog6.new("Fido")
     assert_equal "Fido", fido.name
   end
+  ###with initializer you can set default value of the instance you
+  ###just define in the class!!! but you have to give a default 
+  ###value when you define a instance or ArgumentError will be raised!!!
+  ### like the example following!!!
 
   def test_args_to_new_must_match_initialize
     assert_raise(ArgumentError) do
@@ -123,8 +130,8 @@ class AboutClasses < Neo::Koan
     end
     # THINK ABOUT IT:
     # Why is this so?
-    # because when you define the initialize method, you include a argument to be 
-    # assigned to the instance variable a value!
+    ###because when you define the initialize method, you include
+    ###a argument to be assigned to the instance variable a value!
   end
 
   def test_different_objects_have_different_instance_variables
@@ -162,6 +169,7 @@ class AboutClasses < Neo::Koan
     fidos_self = fido.get_self
     assert_equal fido, fidos_self
   end
+  ###self refers to the containing object AKA receiver!!!
 
   def test_to_s_provides_a_string_version_of_the_object
     fido = Dog7.new("Fido")
@@ -183,6 +191,7 @@ class AboutClasses < Neo::Koan
 
     assert_equal "[1, 2, 3]", array.to_s
     assert_equal "[1, 2, 3]", array.inspect
+    ###:to_s is the same as :inspect!!! except escaping like following!!!
 
     assert_equal "STRING", "STRING".to_s
     assert_equal "\"STRING\"", "STRING".inspect

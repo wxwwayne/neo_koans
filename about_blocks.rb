@@ -68,7 +68,10 @@ class AboutBlocks < Neo::Koan
 
   def test_blocks_can_be_assigned_to_variables_and_called_explicitly
     add_one = lambda { |n| n + 1 }
+    ###define a block independantly!!!
+    ###or  add_one = proc { |n| n+1 }
     assert_equal 11, add_one.call(10)
+    ### NOT 10.add_one!!!!
 
     # Alternative calling syntax
     assert_equal 11, add_one[10]
@@ -76,8 +79,9 @@ class AboutBlocks < Neo::Koan
 
   def test_stand_alone_blocks_can_be_passed_to_methods_expecting_blocks
     make_upper = lambda { |n| n.upcase }
-    #result = method_with_block_arguments(&make_upper)
-    result = method_with_block_arguments{|n| n.upcase}
+    result = method_with_block_arguments(&make_upper)
+    ###we can use a & to call a block we have defined!!! 
+    ###same result as result = method_with_block_arguments{|n| n.upcase}
     #result = make_upper[method_with_block_arguments]
     assert_equal "JIM", result
   end

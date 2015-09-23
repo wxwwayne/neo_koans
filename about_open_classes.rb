@@ -42,4 +42,6 @@ class AboutOpenClasses < Neo::Koan
 
   # NOTE: To understand why we need the :: before Integer, you need to
   # become enlightened about scope.
+  ###:: will force back to global scope, which means ::Integer class
+  ###will be THE ingeter class not integer class in Dog!!!
 end
