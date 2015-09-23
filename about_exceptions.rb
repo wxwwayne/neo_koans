@@ -11,7 +11,7 @@ class AboutExceptions < Neo::Koan
     assert_equal Exception, MySpecialError.ancestors[3]
     assert_equal Object, MySpecialError.ancestors[4]
   end
-
+  ###RuntimeError < StandardError < Exception < Object
   def test_rescue_clause
     result = nil
     begin
@@ -36,6 +36,7 @@ class AboutExceptions < Neo::Koan
     begin
       # 'raise' and 'fail' are synonyms
       raise MySpecialError, "My Message"
+      ###raise Error, "exception message"!!!
     rescue MySpecialError => ex
       result = :exception_handled
     end

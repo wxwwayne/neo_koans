@@ -26,6 +26,7 @@ class AboutIteration < Neo::Koan
   def test_each_is_a_method_on_arrays
     assert_equal true, [].methods.include?(as_name(:each))
   end
+  ###methods are stored in Ruby as symbols. e.g. to_s ===> :to_s
 
   def test_iterating_with_each
     array = [1, 2, 3]
@@ -62,6 +63,9 @@ class AboutIteration < Neo::Koan
     another_array = array.map { |item| item + 10 }
     assert_equal [11,12,13], another_array
   end
+  ###collect and map will generate a new array. the original ones 
+  ###will remain unchanged!!!
+  ###select works the same way!!!
 
   def test_select_selects_certain_items_from_an_array
     array = [1, 2, 3, 4, 5, 6]
@@ -73,25 +77,30 @@ class AboutIteration < Neo::Koan
     more_even_numbers = array.find_all { |item| (item % 2) == 0 }
     assert_equal [2, 4, 6], more_even_numbers
   end
+  ###:find :find_all :collect :select are all instance methods!!!
+  ### instance methods are different from Class methods like :new
+  ###:create :destroy!!!
 
   def test_find_locates_the_first_element_matching_a_criteria
     array = ["Jim", "Bill", "Clarence", "Doug", "Eli"]
     assert_equal "Clarence", array.find { |item| item.size > 4 }
   end
-
+  ###find will only return the most left item that matches the condition
+  ### but find_all and select will returen all of them!!!
   def test_inject_will_blow_your_mind
     result = [2, 3, 4].inject(0) { |sum, item| sum + item }
     assert_equal 9, result
+    ###accumulator!!! 0 as the sum and 2 as the first item and then
+    ###accumulate the rest of array elements!!!
 
     result2 = [2, 3, 4].inject(1) { |product, item| product * item }
     assert_equal 24, result2
 
     # Extra Credit:
     # Describe in your own words what inject does.
-    ##在所声明的容器中注入符合条件的元素，累加器作用
-    ##if inject does not have an argument, product is the first element and item is 
-    ##the second element of the array and then accumulate. Or the inject argument as 
-    ##the first elememt!!
+    ###if inject does not have an argument, product is the first 
+    ###element and item is the second element of the array and 
+    ###then accumulate. Or the inject argument as the first elememt!!
   end
 
   def test_all_iteration_methods_work_on_any_collection_not_just_arrays

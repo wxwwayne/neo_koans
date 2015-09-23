@@ -61,7 +61,8 @@ class AboutControlStatements < Neo::Koan
 
   def test_unless_statement
     result = :default_value
-    unless false    # same as saying 'if !false', which evaluates as 'if true'
+    unless false    
+    ###same as saying 'if !false', which evaluates as 'if true'
       result = :false_value
     end
     assert_equal :false_value, result
@@ -123,8 +124,9 @@ class AboutControlStatements < Neo::Koan
     end
     assert_equal [1, 3, 5, 7, 9], result
   end
-  ##Next simply jumps us to the next 
-  ##iteration of the loop, ignoring everything below.
+  ###Next simply jumps us to the next iteration of the loop, 
+  ###ignoring everything below. Just one iteration not the whole
+  ###loop!!!
 
   def test_for_statement
     array = ["fish", "and", "chips"]

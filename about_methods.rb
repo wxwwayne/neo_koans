@@ -110,7 +110,7 @@ class AboutMethods < Neo::Koan
   def test_calling_methods_in_same_class_with_explicit_receiver
     assert_equal 12, self.my_method_in_the_same_class(3,4)
   end
-    ### This is a Class method!!! 
+    ### This is a instance method!!! 
   # ------------------------------------------------------------------
 
   def my_private_method

@@ -20,6 +20,7 @@ class AboutTrueAndFalse < Neo::Koan
   def test_nil_is_treated_as_false_too
     assert_equal :false_stuff, truth_value(nil)
   end
+  ###only false and nil are treated as false!!!the rest are all true!!!
 
   def test_everything_else_is_treated_as_true
     assert_equal :true_stuff, truth_value(1)

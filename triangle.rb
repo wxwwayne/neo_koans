@@ -15,12 +15,13 @@
 #
 def triangle(a, b, c)
 	if [a,b,c].min <= 0
-    	raise TriangleError, "impossible triangle" 
+    	raise TriangleError.new("Impossible triangle!") 
     end
     #x, y, z = [a,b,c].sort
     #if x + y <= z
     if (a + b <= c) || (a + c <= b) || (b + c <= a)
-    	raise TriangleError, "no two sides can be < than the third"
+    	raise TriangleError.new("No two sides can be smaller than the 
+            third arm in a triangle!")
     end
 
     if a == b && b == c 
