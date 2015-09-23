@@ -34,9 +34,10 @@ class AboutSymbols < Neo::Koan
   # against the string value rather than against symbols?
 
   ###For each symbol, only one of it actually exists. Behind the scenes, 
-  ###a symbol is just a number referred to by a name (starting with a colon). 
-  ###Thus, when comparing the equality of two symbols, 
-  ###you're comparing object identity and not the content of the identifier that refers to this symbol
+  ###a symbol is just a number referred to by a name (starting with a 
+  ###colon). Thus, when comparing the equality of two symbols, 
+  ###you're comparing object identity and not the content of the 
+  ###identifier that refers to this symbol
 
   in_ruby_version("mri") do
     RubyConstant = "What is the sound of one hand clapping?"
@@ -46,11 +47,15 @@ class AboutSymbols < Neo::Koan
       assert_equal true, all_symbols_as_strings.include?("RubyConstant")
     end
   end
+  ###all methods and constants are stored in ruby as symbols!!!
 
   def test_symbols_can_be_made_from_strings
     string = "catsAndDogs"
     assert_equal :catsAndDogs, string.to_sym
   end
+  ###strings can be made into symbols!but strings that are legal for
+  ###symbols will be made into symbols directly like "thisis" will be
+  ###:thisis and illegal one will be in "" like "123" will be :"123"!!! 
 
   def test_symbols_with_spaces_can_be_built
     symbol = :"cats and dogs"
@@ -63,6 +68,7 @@ class AboutSymbols < Neo::Koan
     symbol = :"cats #{value} dogs"
     assert_equal "cats and dogs".to_sym, symbol
   end
+  ###space and interpolation have to be in ""!!!
 
   def test_to_s_is_called_on_interpolated_symbols
     symbol = :cats

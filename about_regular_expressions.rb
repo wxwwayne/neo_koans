@@ -13,29 +13,31 @@ class AboutRegularExpressions < Neo::Koan
   def test_a_failed_match_returns_nil
     assert_equal nil, "some matching content"[/missing/]
   end
-
+  ###sting[/xxx/] is used to match "xxx"!!!
   # ------------------------------------------------------------------
 
   def test_question_mark_means_optional
     assert_equal "ab", "abbcccddddeeeee"[/ab?/] # "ab" or "a" if no "ab"
     assert_equal "a", "abbcccddddeeeee"[/az?/]
+    ###? means the letter before ? is optional!!! 
   end
   #You have a regex of /colou?r/. This would generate a hit on "color" as 
   #well as "colour" as the question mark means that the u is optional.
 
   def test_plus_means_one_or_more
-    assert_equal "bccc", "abbcccddddeeeee"[/bc+/] #"bccccc....." until no c
+    assert_equal "bccc", "abbcccddddeeeee"[/bc+/] 
+    ###"bccccc....." until other letter!!!
   end
-  # The plus will search for strings where the preceding character 
-  #appear one or more times. Example, /tre+/. That will hit "tree" 
-  #because you see it has two instances of e
+  ###The plus will search for strings where the preceding character 
+  ###appear one or more times. Example, /tre+/. That will hit "tree" 
+  ###because you see it has two instances of e
 
   def test_asterisk_means_zero_or_more
     assert_equal "abb", "abbcccddddeeeee"[/ab*/]
     assert_equal "a", "abbcccddddeeeee"[/az*/]
     assert_equal "", "abbcccddddeeeee"[/z*/]
-    #The star will search for strings where the preceding
-    # character appears ZERO or more times.
+    ###The star will search for strings where the preceding
+    ###character appears ZERO or more times.
 
     # THINK ABOUT IT:
     #
@@ -47,13 +49,13 @@ class AboutRegularExpressions < Neo::Koan
   # We say that the repetition operators above are "greedy."
   #
   # Why?
-
+  ###because it will find all continuous letter!!!
   # ------------------------------------------------------------------
 
   def test_the_left_most_match_wins
     assert_equal "a", "abbccc az"[/az*/]
   end
-  ###OPTIONAL LIKE ?
+  ###OPTIONAL LIKE ? is the same!!! left will win!!!
   ### two possible matches, left one will win!! 
   # ------------------------------------------------------------------
 
@@ -61,11 +63,13 @@ class AboutRegularExpressions < Neo::Koan
     animals = ["cat", "bat", "rat", "zat"]
     assert_equal ["cat","bat","rat"], animals.select { |a| a[/[cbr]at/] }
   end
-
+  ###string/[abc]xxx/ means optional for all that match axxx bxxx cxxx!!! 
+  ###left wins!!!display only one result!!!
   def test_slash_d_is_a_shortcut_for_a_digit_character_class
     assert_equal "42", "the number is 42"[/[0123456789]+/]
     assert_equal "42", "the number is 42"[/\d+/]
   end
+  ###this works for [xx-xx] [xx..xx]!!!
 
   def test_character_classes_can_include_ranges
     assert_equal "42", "the number is 42"[/[0-9]+/]
@@ -74,7 +78,7 @@ class AboutRegularExpressions < Neo::Koan
   def test_slash_s_is_a_shortcut_for_a_whitespace_character_class
     assert_equal " \t\n", "space: \t\n"[/\s+/]
   end
-  ###what is after the space(\s)?
+  ###"\s" matches white space charactors like "\n", "\t", " "!!!
 
   def test_slash_w_is_a_shortcut_for_a_word_character_class
     # NOTE:  This is more like how a programmer might define a word.
@@ -85,8 +89,7 @@ class AboutRegularExpressions < Neo::Koan
   def test_period_is_a_shortcut_for_any_non_newline_character
     assert_equal "abc", "abc\n123"[/a.+/]
   end
-  ##the period(.) is a shortcut for any character(letter or number or symbol) 
-  #that is not a new line character, or \n.
+  ###"abc\n123"[/a.+/] is not equivalent to "abc\n123"[/a+./]!!!
 
   def test_a_character_class_can_be_negated
     assert_equal "the number is ", "the number is 42"[/[^0-9]+/]
@@ -106,12 +109,13 @@ class AboutRegularExpressions < Neo::Koan
     assert_equal "start", "start end"[/\Astart/]
     assert_equal nil, "start end"[/\Aend/]
   end
+  ###A must be capital!!!!
 
   def test_slash_z_anchors_to_the_end_of_the_string
     assert_equal "end", "start end"[/end\z/]
     assert_equal nil, "start end"[/start\z/]
   end
-
+    ###z can be capital or small!!!
   def test_caret_anchors_to_the_start_of_lines
      assert_equal "2", "num42\n2 lines"[/^\d+/]
   end
