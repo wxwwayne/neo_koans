@@ -35,7 +35,7 @@ class AboutArrays < Neo::Koan
   def test_slicing_arrays
     array = [:peanut, :butter, :and, :jelly]
 
-    assert_equal [:peanut], array[0,1] #[)left close right open
+    assert_equal [:peanut], array[0,1] #start from [0] and show 1 element
     ##array[0,0] == []!!!
     assert_equal [:peanut, :butter], array[0,2]
     #a pair of arguments (start and length) 
